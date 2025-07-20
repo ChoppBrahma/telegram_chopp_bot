@@ -73,8 +73,7 @@ def webhook():
 def index():
     return "✅ Bot CHOPP online com sucesso!", 200
 
-# Executar localmente ou no Render
+# Webserver com porta visível ao Render
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-
