@@ -1,0 +1,21 @@
+{
+  "1": {
+    "id": 1,
+    "pergunta": "Mensagem de boas-vindas",
+    "resposta": "Fala, mestre! 👋🍺 Bem-vindo à Loja CHOPP! Sou o garçom digital e tô aqui pra ajudar.\n\nO que manda hoje?\n- 📍 Onde fica a loja?\n- 🕒 Qual nosso horário?\n- 🍔 Quero ver o cardápio\n- 🧠 Tirar uma dúvida com a IA\n\nÉ só pedir que eu trago a informação geladinha!",
+    "palavras_chave": [
+      "oi",
+      "olá",
+      "começar",
+      "início",
+      "e aí",
+      "opa",
+      "bom dia",
+      "boa tarde",
+      "boa noite",
+      "fala",
+      "saudação",
+      "ajuda"
+    ]
+  }
+}
