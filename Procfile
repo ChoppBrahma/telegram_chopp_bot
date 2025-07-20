@@ -1,2 +1,1 @@
-web: python main.py
-web: bash start.sh
+web: gunicorn main:app --bind 0.0.0.0:$PORT

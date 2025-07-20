@@ -32,15 +32,26 @@ def start(update, context):
     bot.send_message(chat_id=update.effective_chat.id, text=apresentacao)
     save_last_message(redis_client, user_id, "boas-vindas")
 
+    # DEBUG opcional: testar botão
+    # keyboard = [[InlineKeyboardButton("Ver horário", callback_data="horario")]]
+    # update.message.reply_text("Escolha uma opção:", reply_markup=InlineKeyboardMarkup(keyboard))
+
 # Mensagem do usuário
 def mensagem(update, context):
     user_id = update.effective_user.id
     texto = update.message.text
+
     resposta, sugestoes = responder_ou_sugerir(texto)
+
+    # DEBUG opcional:
+    # print("Texto recebido:", texto)
+    # print("Resposta:", resposta)
+    # print("Sugestões:", sugestoes)
 
     if resposta:
         update.message.reply_text(resposta)
-    if sugestoes:
+
+    if sugestoes and isinstance(sugestoes, list) and all(isinstance(p, str) for p in sugestoes):
         botoes = [[InlineKeyboardButton(p, callback_data=p)] for p in sugestoes]
         update.message.reply_text(
             "🔎 Não encontrei exatamente isso... Mas talvez você quisesse perguntar:",

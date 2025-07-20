@@ -1,8 +1,0 @@
-[project]
-name = "telegram_chopp_bot"
-version = "1.0.0"
-description = "Bot Telegram CHOPP"
-requires-python = ">=3.10,<3.11"
-
-[tool.poetry.dependencies]
-python = "3.10.13"
