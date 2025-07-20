@@ -43,7 +43,7 @@ def mensagem(update, context):
     if sugestoes:
         botoes = [[InlineKeyboardButton(p, callback_data=p)] for p in sugestoes]
         update.message.reply_text(
-            "🔎 Não encontrei exatamente isso... Mas talvez você queria perguntar:",
+            "🔎 Não encontrei exatamente isso... Mas talvez você quisesse perguntar:",
             reply_markup=InlineKeyboardMarkup(botoes)
         )
 
@@ -73,6 +73,8 @@ def webhook():
 def index():
     return "✅ Bot CHOPP online com sucesso!", 200
 
-# Localhost (caso use localmente)
+# Executar localmente ou no Render
 if __name__ == "__main__":
-    app.run(port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
