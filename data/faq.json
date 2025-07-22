@@ -2,7 +2,7 @@
   "2": {
     "id": 2,
     "pergunta": "Como saber quantos litros de chope preciso para o meu evento?",
-    "resposta": "A recomendação inicial é 2 litros por pessoa em eventos de até 4 horas. Para um cálculo mais preciso, utilize a Calculadora da Chopp Brahma Express: https://www.choppbrahmaexpress.com.br/calculadora\n1️⃣ Informe o número de convidados \n2️⃣ Escolha a duração (2h, 4h, 6h ou mais) \n3️⃣ Indique o estilo de consumo: moderado, normal ou intenso \n🌡️ A ferramenta também ajusta o cálculo conforme a temperatura ambiente. \n🍻 Assim, você descobre exatamente quantos litros serão necessários para ninguém ficar sem chope.",
+    "resposta": "A recomendação inicial é 2 litros por pessoa em eventos de até 4 horas. Para um cálculo mais preciso, utilize a Calculadora da Chopp Brahma Express: https://www.choppbrahmaexpress.com.br/calculadora\n1️⃣ Informe o número de convidados\n2️⃣ Escolha a duração (2h, 4h, 6h ou mais)\n3️⃣ Indique o estilo de consumo: moderado, normal ou intenso\n🌡️ A ferramenta também ajusta o cálculo conforme a temperatura ambiente.\n🍻 Assim, você descobre exatamente quantos litros serão necessários para ninguém ficar sem chope.",
     "palavras_chave": [
       "quantidade de litros",
       "chopp",
@@ -17,19 +17,39 @@
       "estimativa ideal",
       "chopp brahma",
       "litros",
+      "quantos litros",
       "quanto",
       "preciso",
       "cálculo",
       "evento",
       "chope",
       "cerveja",
-      "barril"
+      "barril",
+      "calcular bebida",
+      "quantidade ideal",
+      "festa com chope",
+      "consumo médio",
+      "horas de evento",
+      "bebida para festa",
+      "quantia de chope",
+      "estimar litros",
+      "necessidade de chopp",
+      "quantos levo",
+      "cálculo festa",
+      "consumo por convidado",
+      "tempo de evento",
+      "clima evento",
+      "ajuste temperatura",
+      "plano de bebida",
+      "chopp para evento",
+      "litros necessários",
+      "quantidade de cerveja"
     ]
   },
   "3": {
     "id": 3,
     "pergunta": "Qual é o horário de atendimento de vocês?",
-    "resposta": "🕘 Segunda a sexta: das 09h às 18h 🕗 Sábado: das 08h às 12h 🚫 Domingo: fechado",
+    "resposta": "🕘 Segunda a sexta: das 09h às 18h\n🕗 Sábado: das 08h às 12h\n🚫 Domingo: fechado",
     "palavras_chave": [
       "horário de funcionamento",
       "atendimento ao cliente",
@@ -46,7 +66,22 @@
       "fecha",
       "atende",
       "que horas",
-      "expediente"
+      "expediente",
+      "tá aberto",
+      "horários de loja",
+      "quando abre",
+      "quando fecha",
+      "atendimento disponível",
+      "dias de funcionamento",
+      "loja funciona",
+      "horário de trabalho",
+      "qual horário",
+      "abertura loja",
+      "fechamento loja",
+      "atendimento hoje",
+      "horário de atendimento",
+      "funciona sábado",
+      "fechado domingo"
     ]
   },
   "4": {
@@ -64,9 +99,21 @@
       "documentos",
       "emprestar",
       "equipamento",
-      "chopeira",
-      "barril",
-      "precisa"
+      "precisa",
+      "documentação necessária",
+      "papéis para empréstimo",
+      "requisitos segurança",
+      "itens emprestados",
+      "chopeira alugada",
+      "barril alugado",
+      "o que levar",
+      "documentos exigidos",
+      "condições de empréstimo",
+      "segurança equipamento",
+      "papéis obrigatórios",
+      "necessário para pegar",
+      "franquia exige",
+      "equipamentos alugados"
     ]
   },
   "5": {
@@ -85,7 +132,20 @@
       "próxima",
       "local",
       "endereço",
-      "cep"
+      "cep",
+      "encontrar loja",
+      "loja perto",
+      "localização loja",
+      "buscar loja",
+      "endereço mais próximo",
+      "chopp brahma perto",
+      "como achar loja",
+      "cep para entrega",
+      "franquia próxima",
+      "local mais perto",
+      "achar endereço",
+      "loja delivery",
+      "proximidade loja"
     ]
   },
   "6": {
@@ -107,7 +167,19 @@
       "cardápio",
       "o que tem",
       "barril",
-      "chope"
+      "chope",
+      "itens disponíveis",
+      "como escolher",
+      "lista de produtos",
+      "marcas de chope",
+      "carrinho online",
+      "acessórios festa",
+      "opções de compra",
+      "selecionar produtos",
+      "disponibilidade loja",
+      "itens para evento",
+      "comprar online",
+      "catálogo"
     ]
   },
   "7": {
@@ -128,7 +200,18 @@
       "devolver",
       "retirar",
       "pegar",
-      "entrega"
+      "entrega",
+      "marcar entrega",
+      "data devolução",
+      "agendar online",
+      "retorno itens",
+      "organizar entrega",
+      "devolução equipamento",
+      "horário entrega",
+      "combinar devolução",
+      "agendar coleta",
+      "entrega produtos",
+      "devolução itens"
     ]
   },
   "8": {
@@ -148,7 +231,19 @@
       "cartão",
       "boleto",
       "dinheiro",
-      "pix"
+      "pix",
+      "métodos de pagamento",
+      "opções de pagamento",
+      "pagamento online",
+      "cartão aceito",
+      "boleto bancário",
+      "forma de compra",
+      "pagamento loja",
+      "aceita pix",
+      "pagamento à vista",
+      "débito",
+      "pagamento seguro",
+      "confirma pagamento"
     ]
   },
   "9": {
@@ -165,7 +260,20 @@
       "cadastrar",
       "acessar",
       "minha conta",
-      "entrar"
+      "entrar",
+      "criar conta",
+      "acesso ao site",
+      "cadastro online",
+      "login senha",
+      "área de cliente",
+      "como entrar",
+      "registrar-se",
+      "nova conta",
+      "acesso conta",
+      "portal cliente",
+      "fazer login",
+      "cadastro site",
+      "entrar conta"
     ]
   },
   "10": {
@@ -182,7 +290,21 @@
       "disponibilidade",
       "região",
       "todos os produtos",
-      "entrega"
+      "entrega",
+      "estoque por região",
+      "produtos disponíveis",
+      "varia por local",
+      "cep e estoque",
+      "loja local",
+      "disponível na minha área",
+      "oferta regional",
+      "itens por região",
+      "checar disponibilidade",
+      "produtos por cidade",
+      "estoque loja",
+      "região atendida",
+      "disponível onde",
+      "variação de produtos"
     ]
   },
   "11": {
@@ -199,7 +321,20 @@
       "loja responsável",
       "chopeiro",
       "contratar",
-      "serviço"
+      "serviço",
+      "serviço de chopeiro",
+      "ajuda técnica",
+      "contratar profissional",
+      "disponível chopeiro",
+      "chopeiro local",
+      "serviço de suporte",
+      "contratar ajuda",
+      "chopeiro para evento",
+      "verificar chopeiro",
+      "contato chopeiro",
+      "serviço adicional",
+      "chopeiro disponível",
+      "ajuda com chope"
     ]
   },
   "12": {
@@ -216,7 +351,20 @@
       "pedido",
       "status",
       "acompanhar",
-      "rastrear"
+      "rastrear",
+      "rastreamento pedido",
+      "ver status",
+      "acompanhar entrega",
+      "status online",
+      "contato loja",
+      "pedido em andamento",
+      "acompanhamento pedido",
+      "rastrear compra",
+      "status atual",
+      "loja cep",
+      "acompanhar compra",
+      "e-mail confirmação",
+      "checar pedido"
     ]
   },
   "13": {
@@ -235,7 +383,19 @@
       "como entrega",
       "entrega",
       "receber",
-      "retirar"
+      "retirar",
+      "entrega a domicilio",
+      "instalação chopeira",
+      "técnico entrega",
+      "responsável presente",
+      "entrega local",
+      "restrições entrega",
+      "retirada pessoal",
+      "entrega equipamento",
+      "como receber",
+      "instalação técnica",
+      "logística entrega",
+      "entrega barril"
     ]
   },
   "14": {
@@ -252,7 +412,20 @@
       "frete",
       "valor",
       "entrega",
-      "custo"
+      "custo",
+      "custo de entrega",
+      "calcular frete",
+      "valor do frete",
+      "frete online",
+      "simular entrega",
+      "preço entrega",
+      "custo transporte",
+      "frete por endereço",
+      "calcular custo",
+      "valor de envio",
+      "frete site",
+      "custo de envio",
+      "preço frete"
     ]
   },
   "15": {
@@ -269,7 +442,20 @@
       "inclui",
       "chopeira",
       "barril",
-      "aluguel"
+      "aluguel",
+      "compra sem chopeira",
+      "itens emprestados",
+      "devolução itens",
+      "chopp incluso",
+      "aluguel equipamento",
+      "itens gratuitos",
+      "compra bebida",
+      "chopeira grátis",
+      "barril grátis",
+      "condições empréstimo",
+      "retorno equipamento",
+      "compra sem aluguel",
+      "equipamentos cedidos"
     ]
   },
   "16": {
@@ -286,7 +472,20 @@
       "kit",
       "o que vem",
       "chopeira",
-      "equipamentos"
+      "equipamentos",
+      "kit completo",
+      "itens do kit",
+      "acessórios chopeira",
+      "gás para chope",
+      "válvula extratora",
+      "montagem kit",
+      "conteúdo kit",
+      "equipamento evento",
+      "kit brahma",
+      "itens inclusos",
+      "chopeira kit",
+      "conexão kit",
+      "modelo kit"
     ]
   },
   "17": {
@@ -304,7 +503,19 @@
       "chopeira",
       "elétrica",
       "voltagem",
-      "tomada"
+      "tomada",
+      "instalação elétrica",
+      "voltagem correta",
+      "superfície firme",
+      "tomada especial",
+      "longe de calor",
+      "preparar instalação",
+      "instalar chopeira",
+      "requisitos instalação",
+      "mesa para chopeira",
+      "eletricidade chopeira",
+      "instalação segura",
+      "voltagem local"
     ]
   },
   "18": {
@@ -323,7 +534,18 @@
       "como servir",
       "chopp",
       "colarinho",
-      "espuma"
+      "espuma",
+      "servir cerveja",
+      "técnica chope",
+      "equilíbrio espuma",
+      "formar colarinho",
+      "melhor servir",
+      "dicas de serviço",
+      "servir gelado",
+      "qualidade chopp",
+      "espuma ideal",
+      "como fazer chope",
+      "servir barril"
     ]
   },
   "19": {
@@ -336,13 +558,23 @@
       "sabor alterado",
       "suporte",
       "atendimento",
-      "Facebook",
       "reclamação",
       "problema",
       "qualidade",
       "chopp",
       "sabor",
-      "ruim"
+      "ruim",
+      "chopp estragado",
+      "qualidade ruim",
+      "reclamar chopp",
+      "problema sabor",
+      "contato suporte",
+      "chopp com defeito",
+      "denunciar qualidade",
+      "ajuda qualidade",
+      "chopp mal servido",
+      "reclamação sabor",
+      "problema bebida"
     ]
   },
   "20": {
@@ -359,7 +591,19 @@
       "validade",
       "prazo",
       "chopp",
-      "vence"
+      "vence",
+      "prazo de consumo",
+      "tempo de validade",
+      "chopp fresco",
+      "validade bebida",
+      "prazo aberto",
+      "durabilidade chopp",
+      "quando vence",
+      "tempo útil",
+      "validade barril",
+      "frescor chopp",
+      "prazo consumo",
+      "qualidade validade"
     ]
   },
   "21": {
@@ -377,7 +621,19 @@
       "mais chopp",
       "pedir mais",
       "extra",
-      "faltou"
+      "faltou",
+      "adicionar pedido",
+      "pedido urgente",
+      "mais produtos",
+      "chopp adicional",
+      "contato loja",
+      "pedido extra urgente",
+      "disponível agora",
+      "aumentar pedido",
+      "pedir mais cerveja",
+      "entrega extra",
+      "loja contato",
+      "suprimento extra"
     ]
   },
   "22": {
@@ -393,7 +649,20 @@
       "reembolso",
       "cancelar",
       "pedido",
-      "posso cancelar"
+      "posso cancelar",
+      "cancelar compra",
+      "devolução pedido",
+      "prazo cancelamento",
+      "estorno dinheiro",
+      "cancelar entrega",
+      "loja contato",
+      "reembolso pedido",
+      "cancelar online",
+      "devolução compra",
+      "cancelar antes",
+      "reembolso prazo",
+      "pedido entregue",
+      "cancelamento urgente"
     ]
   },
   "23": {
@@ -407,10 +676,23 @@
       "desconto",
       "fidelidade",
       "programa de recompensas",
-      "choppback",
+      "chopp brahma",
       "o que é",
       "crédito",
-      "desconto"
+      "desconto",
+      "recompensa compra",
+      "crédito fidelidade",
+      "cashback site",
+      "desconto futuro",
+      "programa fidelidade",
+      "ganhar crédito",
+      "reembolso compra",
+      "benefício cliente",
+      "crédito online",
+      "recompensa chopp",
+      "fidelizar cliente",
+      "desconto compra",
+      "choppback o que"
     ]
   },
   "24": {
@@ -425,7 +707,21 @@
       "programa de fidelidade",
       "cadastrar",
       "choppback",
-      "como faço"
+      "como faço",
+      "inscrever choppback",
+      "cadastro fidelidade",
+      "primeira compra chopp",
+      "participar programa",
+      "inscrever-se",
+      "cadastro online",
+      "ativar choppback",
+      "como participar",
+      "fidelidade site",
+      "cadastrar conta",
+      "entrada programa",
+      "inscrição choppback",
+      "começar fidelidade",
+      "cadastro automático"
     ]
   },
   "25": {
@@ -441,7 +737,20 @@
       "choppback",
       "elegível",
       "choppback",
-      "quais produtos"
+      "quais produtos",
+      "itens elegíveis",
+      "mínimo compra",
+      "regras elegibilidade",
+      "produtos aceitos",
+      "valor mínimo chopp",
+      "elegíveis choppback",
+      "itens válidos",
+      "compra mínima",
+      "regra programa",
+      "produtos site",
+      "elegível compra",
+      "mínimo R$50",
+      "choppback itens"
     ]
   },
   "26": {
@@ -456,7 +765,21 @@
       "choppback",
       "quanto ganho",
       "choppback",
-      "limite"
+      "limite",
+      "ganhar crédito",
+      "máximo crédito",
+      "5% compra",
+      "valor crédito",
+      "benefício choppback",
+      "limite por pedido",
+      "quanto recebo",
+      "crédito máximo",
+      "porcentagem ganho",
+      "cálculo crédito",
+      "limite ganho",
+      "ganhar choppback",
+      "crédito pedido",
+      "valor benefício"
     ]
   },
   "27": {
@@ -473,7 +796,20 @@
       "saldo",
       "extrato",
       "consultar",
-      "ver choppback"
+      "ver choppback",
+      "checar saldo",
+      "histórico crédito",
+      "painel online",
+      "login conta",
+      "ver extrato",
+      "consultar crédito",
+      "saldo choppback",
+      "movimentações",
+      "acesso extrato",
+      "verificar saldo",
+      "choppback saldo",
+      "extrato online",
+      "consultar conta"
     ]
   },
   "28": {
@@ -488,7 +824,21 @@
       "choppback",
       "usar",
       "créditos",
-      "como usar"
+      "como usar",
+      "aplicar crédito",
+      "desconto compra",
+      "usar choppback",
+      "pagamento desconto",
+      "crédito desconto",
+      "utilizar crédito",
+      "aplicar desconto",
+      "usar saldo",
+      "desconto online",
+      "crédito pagamento",
+      "usar benefício",
+      "aplicação crédito",
+      "desconto site",
+      "usar créditos"
     ]
   },
   "29": {
@@ -504,7 +854,20 @@
       "choppback",
       "validade",
       "créditos",
-      "expira"
+      "expira",
+      "prazo crédito",
+      "tempo validade",
+      "expiração crédito",
+      "duração choppback",
+      "validade crédito",
+      "crédito expira",
+      "tempo limite",
+      "prazo uso",
+      "valido por",
+      "expiração saldo",
+      "crédito válido",
+      "tempo expiração",
+      "validade 180 dias"
     ]
   },
   "30": {
@@ -520,7 +883,20 @@
       "choppback",
       "disponível",
       "liberado",
-      "quando"
+      "quando",
+      "liberação crédito",
+      "tempo espera",
+      "crédito disponível",
+      "prazo liberação",
+      "confirmação pedido",
+      "cancelamento crédito",
+      "disponibilidade chopp",
+      "tempo aprovação",
+      "liberar saldo",
+      "crédito pronto",
+      "prazo faturamento",
+      "disponível após",
+      "tempo crédito"
     ]
   },
   "31": {
@@ -534,7 +910,22 @@
       "aplicabilidade",
       "choppback",
       "quais produtos",
-      "usar créditos"
+      "usar créditos",
+      "itens aplicáveis",
+      "compra online",
+      "produtos elegíveis",
+      "usar choppback",
+      "crédito compra",
+      "loja virtual",
+      "aplicar crédito",
+      "produtos site",
+      "usar saldo",
+      "itens aceitos",
+      "compra com crédito",
+      "choppback produtos",
+      "usar benefício",
+      "loja online chopp",
+      "crédito aplicável"
     ]
   },
   "32": {
@@ -551,7 +942,19 @@
       "choppback",
       "não usei",
       "problema",
-      "créditos"
+      "créditos",
+      "falha uso",
+      "suporte crédito",
+      "login erro",
+      "contato ajuda",
+      "crédito não funciona",
+      "problema choppback",
+      "atendimento suporte",
+      "e-mail suporte",
+      "ligar suporte",
+      "crédito inválido",
+      "ajuda uso",
+      "problema crédito"
     ]
   },
   "33": {
@@ -567,7 +970,19 @@
       "choppback",
       "não acumula",
       "vale presente",
-      "voucher"
+      "voucher",
+      "pagamento excluído",
+      "sem crédito",
+      "formas sem choppback",
+      "exceções pagamento",
+      "vale não acumula",
+      "voucher sem crédito",
+      "regras exclusão",
+      "pagamento sem benefício",
+      "excluir acumulo",
+      "vale-presente chopp",
+      "voucher choppback",
+      "sem recompensa"
     ]
   },
   "34": {
@@ -583,7 +998,19 @@
       "choppback",
       "frete",
       "acumula",
-      "crédito"
+      "crédito",
+      "frete excluído",
+      "sem crédito frete",
+      "cálculo produto",
+      "regras choppback",
+      "frete sem benefício",
+      "valor produtos",
+      "exclusão frete",
+      "crédito só produto",
+      "frete não conta",
+      "cálculo restrição",
+      "sem acumulo frete",
+      "regras crédito"
     ]
   },
   "35": {
@@ -596,7 +1023,21 @@
       "pagamento flexível",
       "choppback",
       "parte do crédito",
-      "parcial"
+      "parcial",
+      "usar parte",
+      "crédito parcial",
+      "flexibilidade pagamento",
+      "aplicar parte",
+      "controle crédito",
+      "usar menos",
+      "parcial crédito",
+      "pagamento parcial",
+      "usar total parcial",
+      "crédito flexível",
+      "aplicação parcial",
+      "dividir crédito",
+      "usar crédito",
+      "parcial choppback"
     ]
   },
   "36": {
@@ -611,7 +1052,20 @@
       "choppback",
       "cupom",
       "desconto",
-      "junto"
+      "junto",
+      "cupom desconto",
+      "combinação oferta",
+      "cupom com crédito",
+      "desconto e crédito",
+      "juntar cupom",
+      "promoção choppback",
+      "usar cupom",
+      "crédito com desconto",
+      "combinação pagamento",
+      "desconto combinado",
+      "cupom e choppback",
+      "regras promoção",
+      "desconto adicional"
     ]
   },
   "37": {
@@ -626,7 +1080,20 @@
       "choppback",
       "não suficiente",
       "completar",
-      "outra forma"
+      "outra forma",
+      "pagar resto",
+      "método misto",
+      "completar crédito",
+      "pagamento combinado",
+      "saldo baixo",
+      "outra opção",
+      "complemento pagamento",
+      "pagar diferença",
+      "método adicional",
+      "crédito insuficiente",
+      "pagar com cartão",
+      "completar compra",
+      "outra forma pagamento"
     ]
   },
   "38": {
@@ -642,7 +1109,20 @@
       "choppback",
       "parcelado",
       "parcelas",
-      "crédito"
+      "crédito",
+      "crédito parcelado",
+      "liberação total",
+      "estorno parcelas",
+      "crédito único",
+      "pagamento parcelado",
+      "cancelamento crédito",
+      "crédito compra",
+      "parcela e crédito",
+      "liberar choppback",
+      "crédito imediato",
+      "regras parcelas",
+      "confirmação pagamento",
+      "crédito pedido"
     ]
   },
   "39": {
@@ -657,7 +1137,20 @@
       "choppback",
       "vale presente",
       "choppback",
-      "pagar com"
+      "pagar com",
+      "crédito proporcional",
+      "acúmulo parcial",
+      "exclusão crédito",
+      "pagamento misto",
+      "vale não acumula",
+      "choppback pago",
+      "crédito limitado",
+      "regra pagamento",
+      "acúmulo restrição",
+      "pagar com vale",
+      "crédito outro método",
+      "exceção acumulo",
+      "pagamento combinado"
     ]
   },
   "40": {
@@ -671,7 +1164,21 @@
       "prazo",
       "choppback",
       "validade diferente",
-      "produtos"
+      "produtos",
+      "validades iguais",
+      "uniformidade crédito",
+      "prazo único",
+      "validade crédito",
+      "sem variação",
+      "crédito padrão",
+      "validade 180",
+      "regra produtos",
+      "igualdade prazo",
+      "crédito uniforme",
+      "validade fixa",
+      "prazo igual",
+      "sem diferença",
+      "choppback prazo"
     ]
   },
   "41": {
@@ -685,7 +1192,21 @@
       "política de devolução",
       "choppback",
       "cancelar compra",
-      "crédito"
+      "crédito",
+      "cancelar crédito",
+      "estorno automático",
+      "crédito perdido",
+      "devolução crédito",
+      "anular choppback",
+      "cancelamento compra",
+      "crédito cancelado",
+      "perda validade",
+      "regras cancelamento",
+      "estorno crédito",
+      "cancelar pedido",
+      "crédito anulado",
+      "política estorno",
+      "devolução choppback"
     ]
   },
   "42": {
@@ -700,7 +1221,20 @@
       "choppback",
       "limite",
       "r$2000",
-      "acumular"
+      "acumular",
+      "limite crédito",
+      "teto choppback",
+      "restrição valor",
+      "máximo acumulo",
+      "limite por pedido",
+      "crédito máximo",
+      "valor limite",
+      "acumulo restrito",
+      "r$2000 limite",
+      "teto benefício",
+      "limite compra",
+      "crédito restrito",
+      "máximo choppback"
     ]
   },
   "43": {
@@ -715,7 +1249,20 @@
       "exclusividade",
       "choppback",
       "loja física",
-      "usar na loja"
+      "usar na loja",
+      "online só",
+      "sem loja física",
+      "exclusivo site",
+      "restrição uso",
+      "choppback online",
+      "loja virtual",
+      "não física",
+      "uso digital",
+      "site exclusivo",
+      "sem uso loja",
+      "compra online",
+      "restrito site",
+      "choppback site"
     ]
   },
   "44": {
@@ -736,7 +1283,17 @@
       "bairro",
       "atendem",
       "minha região",
-      "entregam"
+      "entregam",
+      "cobertura local",
+      "regiões atendidas",
+      "entrega por área",
+      "bairro delivery",
+      "atende minha cidade",
+      "região chopp",
+      "entrega local",
+      "áreas cobertas",
+      "atendimento região",
+      "onde entregam"
     ]
   },
   "45": {
@@ -753,13 +1310,26 @@
       "regiões",
       "atendem",
       "onde entregam",
-      "lista de regiões"
+      "lista de regiões",
+      "cobertura df",
+      "regiões cobertas",
+      "entrega por região",
+      "cidades atendidas",
+      "áreas de entrega",
+      "logística local",
+      "região df",
+      "onde atende",
+      "lista bairros",
+      "entrega cidades",
+      "cobertura brasília",
+      "regiões próximas",
+      "atendimento local"
     ]
   },
   "46": {
     "id": 46,
     "pergunta": "Qual o preço e os descontos para o Chopp Brahma?",
-    "resposta": "🍻 Com certeza! Temos várias opções pra você garantir seu Chopp Brahma geladinho com desconto — e o melhor, entregue direto na sua casa, prontinho pra servir:\n\n30L: de R$ 564,00 por R$ 535,80 (5% OFF)\n\n50L: de R$ 940,00 por R$ 846,00 (10% OFF)\n\n100L: de R$ 1.880,00 por R$ 1.692,00 (10% OFF)\n\n150L: de R$ 2.820,00 por R$ 2.397,00 (15% OFF)\n\n200L: de R$ 3.760,00 por R$ 3.008,00 (20% OFF)\n\n250L: de R$ 4.700,00 por R$ 3.760,00 (20% OFF)\n\n300L: de R$ 5.640,00 por R$ 4.512,00 (20% OFF)\n\n⚠️ Lembre-se: os valores podem variar, então sempre consulte o site para confirmar — a promoção é válida enquanto durar a oferta por lá! 😉",
+    "resposta": "🍻 Com certeza! Temos várias opções pra você garantir seu Chopp Brahma geladinho com desconto — e o melhor, entregue direto na sua casa, prontinho pra servir:\n30L: de R$ 564,00 por R$ 535,80 (5% OFF)\n50L: de R$ 940,00 por R$ 846,00 (10% OFF)\n100L: de R$ 1.880,00 por R$ 1.692,00 (10% OFF)\n150L: de R$ 2.820,00 por R$ 2.397,00 (15% OFF)\n200L: de R$ 3.760,00 por R$ 3.008,00 (20% OFF)\n250L: de R$ 4.700,00 por R$ 3.760,00 (20% OFF)\n300L: de R$ 5.640,00 por R$ 4.512,00 (20% OFF)\n⚠️ Lembre-se: os valores podem variar, então sempre consulte o site para confirmar — a promoção é válida enquanto durar a oferta por lá! 😉",
     "palavras_chave": [
       "preço",
       "preços",
@@ -780,13 +1350,26 @@
       "150l",
       "200l",
       "250l",
-      "300l"
+      "300l",
+      "preço chopp",
+      "valor litro",
+      "desconto chopp",
+      "promoção brahma",
+      "custo litro",
+      "oferta especial",
+      "preço barril",
+      "desconto litro",
+      "tabela preços",
+      "valor promoção",
+      "quanto por litro",
+      "desconto online",
+      "preço evento"
     ]
   },
   "47": {
     "id": 47,
     "pergunta": "Como funciona a logística de entrega e quais os horários?",
-    "resposta": "Nossa logística de entrega é feita por rotas. Entregamos de acordo com o endereço dos pedidos, por isso NÃO FAZEMOS AGENDAMENTO DE HORÁRIO.\n\n🚛 Rotas de segunda a sexta:\n- Rotas da manhã: entregas realizadas entre 9:30 a 13:00.\n- Rotas da tarde: entregas realizadas entre 14:00 a 19:00.\nObs: excepcionalmente nas sextas-feiras a rota da tarde pode se estender para além das 19h de acordo com a quantidade de pedidos.\n\n🚛 Rotas de sábado:\n- ENTREGAS REALIZADAS ENTRE 09:00 a 14:00",
+    "resposta": "Nossa logística de entrega é feita por rotas. Entregamos de acordo com o endereço dos pedidos, por isso NÃO FAZEMOS AGENDAMENTO DE HORÁRIO.\n🚛 Rotas de segunda a sexta:\n- Rotas da manhã: entregas realizadas entre 9:30 a 13:00.\n- Rotas da tarde: entregas realizadas entre 14:00 a 19:00.\nObs: excepcionalmente nas sextas-feiras a rota da tarde pode se estender para além das 19h de acordo com a quantidade de pedidos.\n🚛 Rotas de sábado:\n- ENTREGAS REALIZADAS ENTRE 09:00 a 14:00",
     "palavras_chave": [
       "logística de entrega",
       "horário de entrega",
@@ -807,13 +1390,23 @@
       "turno da tarde",
       "entrega final de semana",
       "entrega sexta-feira",
-      "horário agendado"
+      "horário agendado",
+      "rota de entrega",
+      "horário rotas",
+      "entrega por rota",
+      "sem agendamento",
+      "horários fixos",
+      "entrega manhã",
+      "entrega tarde",
+      "logística chopp",
+      "horário sábado",
+      "entrega dia"
     ]
   },
   "48": {
     "id": 48,
     "pergunta": "Como funciona a retirada de pedidos? Documentos, dias e horários?",
-    "resposta": "Para retirada é necessário apresentar um documento com foto e um comprovante de residência.\n\n📅 Retirada de segunda a sexta-feira: das 9h às 18h.\n📅 Retirada aos sábados: das 9h às 12h.",
+    "resposta": "Para retirada é necessário apresentar um documento com foto e um comprovante de residência.\n📅 Retirada de segunda a sexta-feira: das 9h às 18h.\n📅 Retirada aos sábados: das 9h às 12h.",
     "palavras_chave": [
       "retirada",
       "retirar pedido",
@@ -831,13 +1424,25 @@
       "precisa comprovante",
       "posso retirar",
       "coleta de pedido",
-      "endereço de retirada"
+      "endereço de retirada",
+      "retirada loja",
+      "documento identidade",
+      "horário retirada",
+      "retirada pessoal",
+      "dias disponíveis",
+      "comprovante endereço",
+      "retirar pedido loja",
+      "horário balcão",
+      "retirada sábado",
+      "documentos necessários",
+      "local retirada",
+      "retirada semana"
     ]
   },
   "49": {
     "id": 49,
     "pergunta": "Quais são as regras para devolução de barril lacrado?",
-    "resposta": "Regras para Devolução de Barril Lacrado:\n\nSerá emitida uma carta de crédito, com validade de até 90 dias após a coleta, com valor baseado no preço atual do chopp.\n\nPara solicitações feitas com 7 dias de antecedência do evento, será cobrada uma taxa adicional de frete, caso haja entrega.",
+    "resposta": "Regras para Devolução de Barril Lacrado:\nSerá emitida uma carta de crédito, com validade de até 90 dias após a coleta, com valor baseado no preço atual do chopp.\nPara solicitações feitas com 7 dias de antecedência do evento, será cobrada uma taxa adicional de frete, caso haja entrega.",
     "palavras_chave": [
       "devolução",
       "devolver barril",
@@ -858,13 +1463,22 @@
       "prazo devolução",
       "valor devolução",
       "frete devolução",
-      "antecedência devolução"
+      "antecedência devolução",
+      "devolução lacrado",
+      "crédito devolução",
+      "regras barril",
+      "retorno lacrado",
+      "taxa coleta",
+      "devolução chopp",
+      "prazo crédito",
+      "reembolso barril",
+      "regra devolução"
     ]
   },
   "50": {
     "id": 50,
     "pergunta": "Quais são as recomendações para instalação da chopeira?",
-    "resposta": "Recomendações da Brahma Express para facilidade em momento de instalação:\n\n° Tenha extensão exclusiva para chopeira preparada para o dia de instalação\n° Local definido com mesa que possa suportar nossa chopeira (NÃO PODE SER MESA DE VIDRO)\n° No local onde irá ficar nosso produto, tem escadas? Elevador? Por favor nos informe\n° Recomendamos um acesso fácil e sem obstruções no dia da instalação, para que ocorra com fluidez, rapidez e otimização",
+    "resposta": "Recomendações da Brahma Express para facilidade em momento de instalação:\n° Tenha extensão exclusiva para chopeira preparada para o dia de instalação\n° Local definido com mesa que possa suportar nossa chopeira (NÃO PODE SER MESA DE VIDRO)\n° No local onde irá ficar nosso produto, tem escadas? Elevador? Por favor nos informe\n° Recomendamos um acesso fácil e sem obstruções no dia da instalação, para que ocorra com fluidez, rapidez e otimização",
     "palavras_chave": [
       "instalação chopeira",
       "recomendações instalação",
@@ -884,7 +1498,17 @@
       "instalação brahma express",
       "facilidade instalação",
       "pré-requisitos instalação",
-      "mesa vidro chopeira"
+      "mesa vidro chopeira",
+      "instalação segura",
+      "preparação chopeira",
+      "espaço adequado",
+      "tomada exclusiva",
+      "instalar equipamento",
+      "acesso fácil",
+      "recomendações chopeira",
+      "instalação fluida",
+      "suporte instalação",
+      "dicas chopeira"
     ]
   },
   "51": {
@@ -911,13 +1535,22 @@
       "retorno chopeira",
       "frete devolução",
       "política devolução barril",
-      "condições carta de crédito"
+      "condições carta de crédito",
+      "crédito lacrado",
+      "devolução valor",
+      "retorno lacrado",
+      "carta devolução",
+      "prazo 90 dias",
+      "reembolso lacrado",
+      "valor litragem",
+      "devolução barril",
+      "crédito retornado"
     ]
   },
   "52": {
     "id": 52,
     "pergunta": "Como funciona o suporte SOS? Horários, atendimento e contatos?",
-    "resposta": "Nosso suporte SOS funciona nos seguintes dias e horários:\n- Quinta-feira: até 20h\n- Sexta-feira: até 22h\n- Sábado: até 22h\n- Domingo: até 18h\n\nPedidos com encomenda de ENTREGA são atendidos pelo SOS presencialmente.\nPedidos de RETIRADA são atendidos por chamada de vídeo, *exceto em casos que realmente seja necessária a nossa ida,* como quando a chopeira não funciona ou o gás acaba.\n\nNosso suporte atende apenas dentro do DF — não atendemos entorno.\n\n📞 Telefone SOS Loja: (61) 99451-4488\n📞 Suporte Ambev: 0800 888 1021 (domingo a domingo, das 9h às 23h)\n\n🔗 Links úteis:\n- [Link Site](https://qr.me-qr.com/l/sites )\n- [Zap SOS](https://qr.me-qr.com/l/sos-zap )",
+    "resposta": "Nosso suporte SOS funciona nos seguintes dias e horários:\n- Quinta-feira: até 20h\n- Sexta-feira: até 22h\n- Sábado: até 22h\n- Domingo: até 18h\nPedidos com encomenda de ENTREGA são atendidos pelo SOS presencialmente.\nPedidos de RETIRADA são atendidos por chamada de vídeo, *exceto em casos que realmente seja necessária a nossa ida,* como quando a chopeira não funciona ou o gás acaba.\nNosso suporte atende apenas dentro do DF — não atendemos entorno.\n📞 Telefone SOS Loja: (61) 99451-4488\n📞 Suporte Ambev: 0800 888 1021 (domingo a domingo, das 9h às 23h)\n🔗 Links úteis:\n- [Link Site](https://qr.me-qr.com/l/sites)\n- [Zap SOS](https://qr.me-qr.com/l/sos-zap)",
     "palavras_chave": [
       "suporte SOS",
       "SOS",
@@ -939,13 +1572,22 @@
       "whatsapp SOS",
       "chamada vídeo SOS",
       "SOS Brasília",
-      "SOS DF"
+      "SOS DF",
+      "emergência apoio",
+      "contato emergência",
+      "horário suporte",
+      "atendimento urgência",
+      "suporte vídeo",
+      "telefone apoio",
+      "zap emergência",
+      "suporte DF",
+      "SOS chopeira"
     ]
   },
   "53": {
     "id": 53,
     "pergunta": "Como funciona a coleta/recolha do equipamento (chopeira, barril)?",
-    "resposta": "⚠️ AVISO INFORMATIVO — RECOLHA DO MATERIAL COMODATADO\n\nEste informativo orienta a coleta dos materiais (chopeira, barril, etc.) de acordo com a rota estabelecida durante o horário comercial.\n\n**CRITÉRIO:**\nAs coletas seguem uma rota definida pela empresa para atender o maior número de clientes por região, podendo ser alterada semanalmente conforme a demanda.\n\n**HORÁRIO DE COLETA | ROTA:**\nNão realizamos coleta agendada. As coletas ocorrem por período:\n🕘 Manhã / Tarde\n📆 Segunda à Terça-feira — das 9h às 18h\n\n**REGIME DE EXCEÇÃO (ALTA DEMANDA):**\nConforme critério da empresa, a coleta pode se estender para:\n📆 Quarta-feira — das 9h às 18h\n\n🚫 Não fazemos desvios de rota para atendimento personalizado.\n\n**COMUNICAÇÃO COM O CLIENTE:**\n- A empresa fará contato durante a rota para garantir a presença de um responsável.\n- Em caso de insucesso no contato, a rota será reavaliada e reprogramada até quarta-feira.\n- Se houver imprevistos, o cliente deve entrar em contato com a loja para entender a rota.\n- Caso a rota não atenda à necessidade, o cliente deve providenciar um substituto para liberar o material.\n\n**MULTA:**\nA partir de quinta-feira será cobrada taxa diária de R$100,00/dia pela não disponibilidade de recolha.\n\n**IMPORTANTE!**\n- Todos os materiais devem estar prontos e em perfeita condição para recolha.\n- É necessário que haja um responsável no local para liberar o acesso.\n- A guarda dos materiais é responsabilidade do cliente, sujeito a cobrança em caso de perda ou dano.\n- Serão feitas fotos e filmagem dos materiais para respaldo.\n\n📦 Agradecemos a colaboração! Equipe de Logística — Chopp Brahma",
+    "resposta": "⚠️ AVISO INFORMATIVO — RECOLHA DO MATERIAL COMODATADO\nEste informativo orienta a coleta dos materiais (chopeira, barril, etc.) de acordo com a rota estabelecida durante o horário comercial.\n**CRITÉRIO:**\nAs coletas seguem uma rota definida pela empresa para atender o maior número de clientes por região, podendo ser alterada semanalmente conforme a demanda.\n**HORÁRIO DE COLETA | ROTA:**\nNão realizamos coleta agendada. As coletas ocorrem por período:\n🕘 Manhã / Tarde\n📆 Segunda à Terça-feira — das 9h às 18h\n**REGIME DE EXCEÇÃO (ALTA DEMANDA):** Conforme critério da empresa, a coleta pode se estender para:\n📆 Quarta-feira — das 9h às 18h\n🚫 Não fazemos desvios de rota para atendimento personalizado.\n**COMUNICAÇÃO COM O CLIENTE:**\n- A empresa fará contato durante a rota para garantir a presença de um responsável.\n- Em caso de insucesso no contato, a rota será reavaliada e reprogramada até quarta-feira.\n- Se houver imprevistos, o cliente deve entrar em contato com a loja para entender a rota.\n- Caso a rota não atenda à necessidade, o cliente deve providenciar um substituto para liberar o material.\n**MULTA:**\nA partir de quinta-feira será cobrada taxa diária de R$100,00/dia pela não disponibilidade de recolha.\n**IMPORTANTE!**\n- Todos os materiais devem estar prontos e em perfeita condição para recolha.\n- É necessário que haja um responsável no local para liberar o acesso.\n- A guarda dos materiais é responsabilidade do cliente, sujeito a cobrança em caso de perda ou dano.\n- Serão feitas fotos e filmagem dos materiais para respaldo.\n📦 Agradecemos a colaboração! Equipe de Logística — Chopp Brahma",
     "palavras_chave": [
       "coleta",
       "recolha",
@@ -966,13 +1608,26 @@
       "comodatado",
       "logística reversa",
       "responsabilidade",
-      "aviso"
+      "aviso",
+      "coleta equipamento",
+      "recolha barril",
+      "devolução chopeira",
+      "horário recolha",
+      "rota de coleta",
+      "multa atraso",
+      "taxa penalidade",
+      "responsável coleta",
+      "condição material",
+      "logística devolução",
+      "recolha rota",
+      "aviso cliente",
+      "coleta programada"
     ]
   },
   "54": {
     "id": 54,
     "pergunta": "Não encontrei minha dúvida. Como posso ser atendido?",
-    "resposta": "Sentimos muito que você não tenha encontrado a resposta para sua dúvida em nosso FAQ. 😔\n\nPara um atendimento mais personalizado, por favor, clique no link abaixo para falar diretamente com nossa equipe via WhatsApp:\n\n📱 [**Clique aqui para falar conosco no WhatsApp!**](https://wa.me/556139717502) \n\nOu, se preferir, você pode nos ligar no **(61) 3971-7502**.\n\nEstamos prontos para te ajudar!",
+    "resposta": "Sentimos muito que você não tenha encontrado a resposta para sua dúvida em nosso FAQ. 😔\nPara um atendimento mais personalizado, por favor, clique no link abaixo para falar diretamente com nossa equipe via WhatsApp:\n📱 [**Clique aqui para falar conosco no WhatsApp!**](https://wa.me/556139717502)\nOu, se preferir, você pode nos ligar no **(61) 3971-7502**.\nEstamos prontos para te ajudar!",
     "palavras_chave": [
       "não encontrei",
       "minha dúvida",
@@ -997,13 +1652,23 @@
       "direcionar",
       "onde ligo",
       "qual o numero",
-      "falar com consultor"
+      "falar com consultor",
+      "dúvida não listada",
+      "ajuda personalizada",
+      "contato whatsapp",
+      "ligar agora",
+      "suporte direto",
+      "atendimento extra",
+      "falar equipe",
+      "resposta personalizada",
+      "ajuda urgente",
+      "contato telefone"
     ]
   },
   "55": {
     "id": 55,
     "pergunta": "Quais dados preciso informar para fazer um cadastro ou pedido?",
-    "resposta": "Para que possamos processar seu pedido e emitir a Ordem de Serviço e Nota Fiscal, precisamos dos seguintes dados. Por favor, preencha-os com atenção:\n\n--- --- ---\n\n**DADOS DO EVENTO:**\n📅 *Data do evento:*\n⏰ *Horário do evento:*\n🗺️ *Endereço do evento:*\n✉️ *CEP do evento:*\n🗓️ *Data da entrega (do equipamento/chopp):*\n\n**DADOS PESSOAIS / EMPRESARIAIS:**\n📧 *E-mail:*\n👤 *Nome completo / Razão Social:*\n🏢 *Nome Fantasia (para CNPJ, se aplicável):*\n📞 *Telefone:*\n🆔 *CPF / CNPJ:*\n💳 *RG / Órgão Emissor (para CPF, se aplicável):*\n📝 *Inscrição Estadual (para CNPJ, se aplicável):*\n🏡 *Endereço da sua residência:*\n📮 *CEP da residência:*\n\n**DETALHES DO PEDIDO:**\n🍺 *Quantidade de Litros de Chopp:*\n💰 *Forma de Pagamento (Pix ou Cartão):*\n\n--- --- ---\n\nAgradecemos a sua colaboração! Assim que tivermos essas informações, agilizaremos seu pedido.",
+    "resposta": "Para que possamos processar seu pedido e emitir a Ordem de Serviço e Nota Fiscal, precisamos dos seguintes dados. Por favor, preencha-os com atenção:\n**DADOS DO EVENTO:**\n📅 *Data do evento:*\n⏰ *Horário do evento:*\n🗺️ *Endereço do evento:*\n✉️ *CEP do evento:*\n🗓️ *Data da entrega (do equipamento/chopp):*\n**DADOS PESSOAIS / EMPRESARIAIS:**\n📧 *E-mail:*\n👤 *Nome completo / Razão Social:*\n🏢 *Nome Fantasia (para CNPJ, se aplicável):*\n📞 *Telefone:*\n🆔 *CPF / CNPJ:*\n💳 *RG / Órgão Emissor (para CPF, se aplicável):*\n📝 *Inscrição Estadual (para CNPJ, se aplicável):*\n🏡 *Endereço da sua residência:*\n📮 *CEP da residência:*\n**DETALHES DO PEDIDO:**\n🍺 *Quantidade de Litros de Chopp:*\n💰 *Forma de Pagamento (Pix ou Cartão):*\nAgradecemos a sua colaboração! Assim que tivermos essas informações, agilizaremos seu pedido.",
     "palavras_chave": [
       "cadastro",
       "pedido",
@@ -1018,7 +1683,23 @@
       "informações para pedido",
       "lista de dados",
       "pedir chopp",
-      "como pedir"
+      "como pedir",
+      "dados necessários",
+      "informações cadastro",
+      "documentos pedido",
+      "requisitos compra",
+      "cadastro online",
+      "dados evento",
+      "informações pessoais",
+      "pedido chopp",
+      "o que informar",
+      "dados cliente",
+      "requisitos pedido",
+      "cadastro site",
+      "informar endereço",
+      "dados pagamento",
+      "como cadastrar",
+      "necessário pedido"
     ]
   }
 }
