@@ -4,22 +4,33 @@ from http import HTTPStatus
 from flask import Flask, request, Response
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
-    Application, # Usando a nova classe Application
+    Application, # Usando a nova classe Application (versões 20+)
     ContextTypes,
     MessageHandler,
-    filters, # <--- ESSA LINHA PRECISA ESTAR COM 'filters' minúsculo
+    filters, # <--- ESSA LINHA PRECISA ESTAR COM 'filters' (minúsculo)
     CallbackQueryHandler,
     CommandHandler
 )
 import json # Importação necessária para ler arquivos JSON
 
 # --- Configuração ---
-TOKEN = os.environ.get("BOT_TOKEN") # <--- Variável de ambiente deve ser BOT_TOKEN
+TOKEN = os.environ.get("BOT_TOKEN") # <--- Variável de ambiente deve ser BOT_TOKEN no Render
 PORT = int(os.environ.get("PORT", 8000)) # Porta para o servidor web
 
-# --- Carregar dados de FAQ ---
-# O bot.py que você enviou antes não tinha apresentação_data, então mantive apenas o FAQ.
-# Se precisar de apresentação_data, adicione um carregamento similar aqui.
+# --- Carregar dados de apresentação e FAQ ---
+# Certifique-se de que 'data/apresentacao.json' e 'data/faq.json' existem
+# e estão no formato JSON válido dentro da pasta 'data'
+try:
+    with open('data/apresentacao.json', 'r', encoding='utf-8') as f:
+        apresentacao_data = json.load(f)['1']
+    print("Dados de apresentação carregados com sucesso.")
+except FileNotFoundError:
+    print("Erro: 'data/apresentacao.json' não encontrado.")
+    apresentacao_data = {'resposta': 'Olá! Seja bem-vindo!', 'palavras_chave': ['olá', 'oi', 'início']} # Fallback simples
+except json.JSONDecodeError:
+    print("Erro: 'data/apresentacao.json' contém JSON inválido.")
+    apresentacao_data = {'resposta': 'Olá! Seja bem-vindo!', 'palavras_chave': ['olá', 'oi', 'início']}
+
 try:
     with open('data/faq.json', 'r', encoding='utf-8') as f:
         faq_data = json.load(f)
@@ -31,7 +42,7 @@ except json.JSONDecodeError:
     print("Erro: 'data/faq.json' contém JSON inválido. Verifique a formatação.")
     faq_data = [] # Inicializa vazio
 
-# --- Lista de Regiões Atendidas (do seu bot.py anterior) ---
+# --- Lista de Regiões Atendidas (do seu bot.py anterior, mantida aqui) ---
 REGIOES_ATENDIDAS = [
     "agua quente", "aguas claras", "arniqueira", "brazlandia", "ceilandia",
     "gama", "guara", "nucleo bandeirante", "park way", "recanto das emas",
@@ -53,7 +64,14 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Aliás, você sabe tirar o chopp perfeito? Dá uma olhada nesse link "
         "https://l1nk.dev/sabe-tirar-o-chopp-perfeito e descubra como deixar seu chope ainda melhor!"
     )
-    await update.message.reply_text(texto_start)
+    # Adaptação para usar InlineKeyboardMarkup se a apresentação_data tiver botões
+    if 'botoes' in apresentacao_data and apresentacao_data['botoes']:
+        keyboard = [[InlineKeyboardButton(btn['texto'], callback_data=btn['callback_data'])]
+                    for btn in apresentacao_data['botoes']]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.message.reply_text(apresentacao_data['resposta'], reply_markup=reply_markup)
+    else:
+        await update.message.reply_text(texto_start) # Caso não tenha botões na apresentação_data original
 
 async def responder(update: Update, context: ContextTypes.DEFAULT_TYPE):
     texto_usuario = update.message.text.lower()
@@ -65,6 +83,11 @@ async def responder(update: Update, context: ContextTypes.DEFAULT_TYPE):
         'ú': 'u',
         'ç': 'c'
     }))
+
+    # Verifica palavras-chave de saudação para chamar start_command
+    if any(p in texto_normalizado for p in apresentacao_data['palavras_chave']):
+        await start_command(update, context)
+        return
 
     contem_palavra_de_regiao = any(p in texto_normalizado for p in ["atende", "entrega", "regiao", "bairro", "cidade"])
     regiao_encontrada = next((r for r in REGIOES_ATENDIDAS if r in texto_normalizado), None)
@@ -78,11 +101,19 @@ async def responder(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     scored_faqs = []
     palavras_do_usuario = set(texto_usuario.split())
-    for item in faq_data:
-        intersecao = palavras_do_usuario.intersection(set(item["palavras_chave"]))
+    # O seu faq_data original pode ser um dicionário onde as chaves são os IDs, então adaptei aqui
+    # Se for uma lista de dicionários, como no exemplo anterior de bot.py, a iteração abaixo precisa ser ajustada:
+    # for item in faq_data:
+    #     intersecao = palavras_do_usuario.intersection(set(item["palavras_chave"]))
+    #     score = len(intersecao)
+    #     if score > 0:
+    #         scored_faqs.append({"faq": item, "score": score})
+    for item_id, item_data in faq_data.items(): # Adaptei para o formato {'1': {...}, '2': {...}}
+        intersecao = palavras_do_usuario.intersection(set(item_data["palavras_chave"]))
         score = len(intersecao)
         if score > 0:
-            scored_faqs.append({"faq": item, "score": score})
+            scored_faqs.append({"faq": item_data, "score": score})
+
 
     scored_faqs.sort(key=lambda x: x["score"], reverse=True)
 
@@ -111,19 +142,30 @@ async def button_callback_handler(update: Update, context: ContextTypes.DEFAULT_
     await query.answer()
     callback_data = query.data
     if callback_data.startswith("faq_id_"):
-        faq_id = int(callback_data[len("faq_id_"):])
-        faq = next((item for item in faq_data if item["id"] == faq_id), None)
+        faq_id = callback_data[len("faq_id_"):] # faq_id pode ser string se a chave do JSON for string
+        faq = faq_data.get(faq_id) # Usa .get() para dicionários
         if faq:
             await query.message.reply_text(text=faq["resposta"])
-            await query.edit_message_reply_markup(reply_markup=None)
+            await query.edit_message_reply_markup(reply_markup=None) # Remove os botões após a resposta
         else:
             await query.message.reply_text(text="Desculpe, não consegui encontrar a resposta para essa opção.")
+    # Adicione tratamento para outros callback_data como 'local', 'horario', 'litros', 'cardapio'
+    elif callback_data == 'local':
+        # Supondo que você tem uma resposta para 'local' em algum lugar, talvez no FAQ
+        await query.message.reply_text("Nossa loja está localizada em [Endereço da Loja].")
+    elif callback_data == 'horario':
+        await query.message.reply_text("Nosso horário de funcionamento é de [Horário de Funcionamento].")
+    elif callback_data == 'litros':
+        await query.message.reply_text("Trabalhamos com barris de 30L e 50L. Qual você prefere?")
+    elif callback_data == 'cardapio':
+        await query.message.reply_text("Você pode ver nosso cardápio completo em [Link para o Cardápio].")
 
 # --- Configuração da Aplicação e Servidor ---
 # Instância do Application (para o bot do Telegram)
 ptb = Application.builder().token(TOKEN).build()
 ptb.add_handler(CommandHandler("start", start_command))
-ptb.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), responder)) # <--- Uso correto de filters
+# O MessageHandler agora usa 'filters.TEXT & (~filters.COMMAND)' para responder a mensagens de texto que não são comandos
+ptb.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), responder))
 ptb.add_handler(CallbackQueryHandler(button_callback_handler))
 
 # Instância do Flask (para o servidor web)
@@ -185,10 +227,12 @@ def webhook_info():
         return {"error": str(e)}, HTTPStatus.INTERNAL_SERVER_ERROR
 
 def set_telegram_webhook():
+    # RENDER_EXTERNAL_HOSTNAME é uma variável de ambiente fornecida pelo Render
     webhook_url = f"https://{os.environ.get('RENDER_EXTERNAL_HOSTNAME')}/api/telegram/webhook"
     try:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
+        # allowed_updates=Update.ALL_TYPES é uma boa prática para evitar spam de updates
         loop.run_until_complete(ptb.bot.set_webhook(url=webhook_url, allowed_updates=Update.ALL_TYPES))
         loop.close()
         print(f"Webhook configurado para: {webhook_url}")
@@ -196,5 +240,7 @@ def set_telegram_webhook():
         print(f"Erro ao configurar webhook: {e}")
 
 if __name__ == "__main__":
-    set_telegram_webhook() # Setar o webhook quando rodar localmente
+    # Garante que o webhook seja configurado ao iniciar a aplicação no Render
+    set_telegram_webhook()
+    # Inicia o servidor Flask
     flask_app.run(host="0.0.0.0", port=PORT)
