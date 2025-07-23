@@ -1,20 +1,20 @@
 # main.py
-from flask import Flask, request, abort # Adicione Flask, request, abort
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup # Remova Updater aqui se já estiver importado
-from telegram.ext import ( # Mantenha estas importações
+from flask import Flask, request, abort
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import (
     Updater,
     CommandHandler,
     MessageHandler,
-    Filters,
     CallbackQueryHandler,
+    filters, # <--- CORRIGIDO: Agora é 'filters' (minúsculo)
 )
 import os
 import logging
 from dotenv import load_dotenv
 import google.generativeai as genai
-import json # Garanta que json esteja importado se você usa ele para carregar os dados
-import redis_handler # Importe sua lógica de Redis
-import faq_handler # Importe seu faq_handler
+import json
+import redis_handler
+import faq_handler # Assegure-se de que faq_handler exista e esteja correto
 
 # Configure o logger
 logging.basicConfig(
@@ -23,19 +23,26 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Carrega variáveis de ambiente do .env (para desenvolvimento local)
+# Carrega variáveis de ambiente
 load_dotenv()
 
 # Variáveis de ambiente
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN") # Verifique se esta variável é TELEGRAM_BOT_TOKEN ou TELEGRAM_TOKEN
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 REDIS_URL = os.getenv("REDIS_URL")
 
 # Inicialização do Redis
 if REDIS_URL:
-    redis_client = redis_handler.init_redis(REDIS_URL) # A função init_redis precisa ser adaptada em redis_handler.py para aceitar REDIS_URL
-    logger.info("Redis configurado.")
+    try:
+        redis_client = redis_handler.init_redis(REDIS_URL)
+        if redis_client:
+            logger.info("Redis configurado com sucesso.")
+        else:
+            logger.warning("Erro ao inicializar Redis com REDIS_URL fornecido. Redis pode não funcionar.")
+    except Exception as e:
+        redis_client = None
+        logger.error(f"Exceção ao inicializar Redis: {e}. As funcionalidades de Redis não funcionarão.")
 else:
     redis_client = None
     logger.warning("REDIS_URL não configurado. As funcionalidades de Redis (salvar última mensagem) não funcionarão.")
@@ -50,23 +57,26 @@ else:
     logger.warning("GEMINI_API_KEY não configurado. As funcionalidades da API Gemini não funcionarão.")
 
 # Carregar dados de apresentação e FAQ
-with open('data/apresentacao.json', 'r', encoding='utf-8') as f:
-    apresentacao_data = json.load(f)['1']
-with open('data/faq.json', 'r', encoding='utf-8') as f:
-    faq_data = json.load(f)
+try:
+    with open('data/apresentacao.json', 'r', encoding='utf-8') as f:
+        apresentacao_data = json.load(f)['1']
+    with open('data/faq.json', 'r', encoding='utf-8') as f:
+        faq_data = json.load(f)
+except FileNotFoundError as e:
+    logger.error(f"Erro ao carregar arquivos JSON: {e}. Verifique se 'data/apresentacao.json' e 'data/faq.json' existem.")
+    apresentacao_data = {}
+    faq_data = {}
 
-# Crie uma instância do Flask e atribua-a à variável 'app'
-app = Flask(__name__) # <--- ESSA LINHA FOI ADICIONADA/CORRIGIDA AQUI
 
-# Inicializa o Updater (para webhook) - movemos para o escopo global ou para uma função de inicialização
-# As handlers precisam ser definidas no dispatcher globalmente ou na função de setup do bot
+# Crie uma instância do Flask e atribua-a à variável 'app' no escopo global
+app = Flask(__name__)
+
+# Inicializa o Updater (para webhook) - movemos para o escopo global
 updater = Updater(TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
-# Funções do bot (start, button, mensagem) - mantenha-as como estão, mas certifique-se de que usem redis_client e model
-# (O código abaixo é um exemplo simplificado, mantenha suas implementações completas)
 
-# /start
+# Funções do bot (start, button, mensagem) - certifique-se que estas funções estão definidas ANTES de serem usadas nos handlers
 def start(update: Update, context):
     user_id = update.effective_user.id
     keyboard = [
@@ -76,12 +86,11 @@ def start(update: Update, context):
         [InlineKeyboardButton("📋 Cardápio", callback_data='cardapio')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text(apresentacao_data['resposta'], reply_markup=reply_markup)
+    update.message.reply_text(apresentacao_data.get('resposta', 'Olá! Como posso ajudar?'), reply_markup=reply_markup)
     if redis_client:
-        redis_handler.save_last_message(redis_client, user_id, "boas-vindas") # Mudamos para "boas-vindas" para ser mais descritivo
+        redis_handler.save_last_message(redis_client, user_id, "boas-vindas")
 
 
-# Botão clicado
 def button(update: Update, context):
     query = update.callback_query
     query.answer()
@@ -95,17 +104,17 @@ def button(update: Update, context):
     elif data == 'litros':
         query.edit_message_text(text="Oferecemos chopp em growlers de 1 Litro e 2 Litros. Também temos pacotes para eventos maiores!")
     elif data == 'cardapio':
-        query.edit_message_text(text="Para ver nosso cardápio completo, acesse: [Link para o Cardápio]") # Substitua pelo link real
+        query.edit_message_text(text="Para ver nosso cardápio completo, acesse: [Link para o Cardápio]")
     if redis_client:
         redis_handler.save_last_message(redis_client, user_id, f"botão_{data}")
 
-# Mensagens de texto
 def mensagem(update: Update, context):
     user_id = update.effective_user.id
     texto = update.message.text.lower().strip()
-    ultima = redis_handler.get_last_message(redis_client, user_id) if redis_client else "" # Verificação de redis_client
+    ultima = redis_handler.get_last_message(redis_client, user_id) if redis_client else ""
 
-    resposta_faq, sugestoes_faq = faq_handler.responder_ou_sugerir(texto)
+    # Usando o faq_handler corretamente
+    resposta_faq = faq_handler.responder_faq(faq_data, texto) # Assumindo que faq_handler.responder_faq retorna string ou None
 
     if resposta_faq:
         update.message.reply_text(resposta_faq)
@@ -123,8 +132,7 @@ def mensagem(update: Update, context):
             return
         except Exception as e:
             logger.error(f"Erro na API Gemini: {e}")
-            # Fallback se a API Gemini falhar ou não estiver configurada
-            pass
+            pass # Continue para o fallback se a API Gemini falhar ou não estiver configurada
 
     # Fallback com sugestões via botão (se não houver resposta FAQ ou Gemini)
     keyboard = [
@@ -132,7 +140,6 @@ def mensagem(update: Update, context):
         [InlineKeyboardButton("🕒 Horário", callback_data='horario')],
         [InlineKeyboardButton("🍻 Quantos litros?", callback_data='litros')]
     ]
-    # Adiciona o botão de cardápio se não for uma resposta de cardápio
     if 'cardapio' not in texto and 'menu' not in texto:
         keyboard.append([InlineKeyboardButton("📋 Cardápio", callback_data='cardapio')])
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -143,24 +150,37 @@ def mensagem(update: Update, context):
     if redis_client:
         redis_handler.save_last_message(redis_client, user_id, texto)
 
-
 # Adicione os handlers ao dispatcher
 dispatcher.add_handler(CommandHandler("start", start))
 dispatcher.add_handler(CallbackQueryHandler(button))
-dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, mensagem))
+dispatcher.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, mensagem)) # <--- CORRIGIDO AQUI TAMBÉM
 
 
 # O endpoint para o webhook do Telegram
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
-    update = Update.de_json(request.get_json(force=True), updater.bot)
-    dispatcher.process_update(update)
-    return "ok"
+    if request.method == "POST":
+        update = Update.de_json(request.get_json(force=True), updater.bot)
+        dispatcher.process_update(update)
+        return "ok"
+    return abort(400) # Método não permitido
 
-# Função principal para execução local (para testar em sua máquina)
+
+# Função para setar o webhook (chamada uma única vez, preferencialmente fora do deploy)
+# ou pode ser chamada no final do main.py se quiser que seja setada a cada deploy
+# MAS GERALMENTE É MELHOR SETAR MANULMENTE OU VIA UM SCRIPT SEPARADO
+def set_webhook():
+    if TOKEN and WEBHOOK_URL:
+        webhook_url_with_token = f"{WEBHOOK_URL}/{TOKEN}"
+        updater.bot.set_webhook(url=webhook_url_with_token)
+        logger.info(f"Webhook configurado para: {webhook_url_with_token}")
+    else:
+        logger.warning("TOKEN ou WEBHOOK_URL não configurados. Não foi possível setar o webhook.")
+
+
+# Isso só será executado quando você rodar `python main.py` localmente
+# No Render, o Gunicorn executa `gunicorn main:app` e não entra neste bloco
 if __name__ == "__main__":
-    # Para desenvolvimento local, você pode usar polling ou um servidor Flask local
-    # Para deploy no Render, o Gunicorn usa a rota @app.route
-    # updater.start_polling()
-    # updater.idle()
-    app.run(port=int(os.environ.get("PORT", 5000))) # Só para testar localmente, o Gunicorn no Render cuidará disso
+    logger.info("Executando localmente. Configurarei o webhook e iniciarei o servidor Flask.")
+    set_webhook() # Chame para setar o webhook quando rodar localmente
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000))) # Flask local para testar
