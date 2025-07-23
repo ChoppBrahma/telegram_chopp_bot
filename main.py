@@ -1,186 +1,200 @@
-# main.py
-from flask import Flask, request, abort
+import os
+import asyncio
+from http import HTTPStatus
+from flask import Flask, request, Response
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (
-    Updater,
-    CommandHandler,
+    Application, # Usando a nova classe Application
+    ContextTypes,
     MessageHandler,
+    filters, # <--- ESSA LINHA PRECISA ESTAR COM 'filters' minúsculo
     CallbackQueryHandler,
-    filters, # <--- CORRIGIDO: Agora é 'filters' (minúsculo)
+    CommandHandler
 )
-import os
-import logging
-from dotenv import load_dotenv
-import google.generativeai as genai
-import json
-import redis_handler
-import faq_handler # Assegure-se de que faq_handler exista e esteja correto
+import json # Importação necessária para ler arquivos JSON
 
-# Configure o logger
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.INFO,
-)
-logger = logging.getLogger(__name__)
+# --- Configuração ---
+TOKEN = os.environ.get("BOT_TOKEN") # <--- Variável de ambiente deve ser BOT_TOKEN
+PORT = int(os.environ.get("PORT", 8000)) # Porta para o servidor web
 
-# Carrega variáveis de ambiente
-load_dotenv()
-
-# Variáveis de ambiente
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-REDIS_URL = os.getenv("REDIS_URL")
-
-# Inicialização do Redis
-if REDIS_URL:
-    try:
-        redis_client = redis_handler.init_redis(REDIS_URL)
-        if redis_client:
-            logger.info("Redis configurado com sucesso.")
-        else:
-            logger.warning("Erro ao inicializar Redis com REDIS_URL fornecido. Redis pode não funcionar.")
-    except Exception as e:
-        redis_client = None
-        logger.error(f"Exceção ao inicializar Redis: {e}. As funcionalidades de Redis não funcionarão.")
-else:
-    redis_client = None
-    logger.warning("REDIS_URL não configurado. As funcionalidades de Redis (salvar última mensagem) não funcionarão.")
-
-# Inicialização do Gemini API
-if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel("gemini-pro")
-    logger.info("API Gemini configurada.")
-else:
-    model = None
-    logger.warning("GEMINI_API_KEY não configurado. As funcionalidades da API Gemini não funcionarão.")
-
-# Carregar dados de apresentação e FAQ
+# --- Carregar dados de FAQ ---
+# O bot.py que você enviou antes não tinha apresentação_data, então mantive apenas o FAQ.
+# Se precisar de apresentação_data, adicione um carregamento similar aqui.
 try:
-    with open('data/apresentacao.json', 'r', encoding='utf-8') as f:
-        apresentacao_data = json.load(f)['1']
     with open('data/faq.json', 'r', encoding='utf-8') as f:
         faq_data = json.load(f)
-except FileNotFoundError as e:
-    logger.error(f"Erro ao carregar arquivos JSON: {e}. Verifique se 'data/apresentacao.json' e 'data/faq.json' existem.")
-    apresentacao_data = {}
-    faq_data = {}
+    print("FAQ carregado com sucesso de data/faq.json.")
+except FileNotFoundError:
+    print("Erro: 'data/faq.json' não encontrado. Certifique-se de que o arquivo existe na pasta 'data'.")
+    faq_data = [] # Inicializa vazio para evitar erros, mas o bot não terá FAQs
+except json.JSONDecodeError:
+    print("Erro: 'data/faq.json' contém JSON inválido. Verifique a formatação.")
+    faq_data = [] # Inicializa vazio
 
+# --- Lista de Regiões Atendidas (do seu bot.py anterior) ---
+REGIOES_ATENDIDAS = [
+    "agua quente", "aguas claras", "arniqueira", "brazlandia", "ceilandia",
+    "gama", "guara", "nucleo bandeirante", "park way", "recanto das emas",
+    "riacho fundo", "riacho fundo ii", "samambaia", "santa maria",
+    "scia/estrutural", "sia", "sol nascente / por do sol", "taguatinga",
+    "valparaiso de goias", "vicente pires"
+]
 
-# Crie uma instância do Flask e atribua-a à variável 'app' no escopo global
-app = Flask(__name__)
+# --- Lógica do Bot (Handlers) ---
+async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    texto_start = (
+        "Olá! Tudo bem? Aqui é da equipe do Chopp Brahma Express de Águas Claras. "
+        "Passando pra te mostrar como ficou fácil garantir seu chopp gelado, com desconto especial, "
+        "entregue direto na sua casa!\n\n"
+        "Já pensou em garantir seu Chopp Brahma com até 20% OFF, sem sair de casa? É só clicar:\n"
+        "https://www.choppbrahmaexpress.com.br/chopps\n"
+        "ou\n"
+        "https://www.ze.delivery/produtos/categoria/chopp\n\n"
+        "Aliás, você sabe tirar o chopp perfeito? Dá uma olhada nesse link "
+        "https://l1nk.dev/sabe-tirar-o-chopp-perfeito e descubra como deixar seu chope ainda melhor!"
+    )
+    await update.message.reply_text(texto_start)
 
-# Inicializa o Updater (para webhook) - movemos para o escopo global
-updater = Updater(TOKEN, use_context=True)
-dispatcher = updater.dispatcher
+async def responder(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    texto_usuario = update.message.text.lower()
+    texto_normalizado = texto_usuario.translate(str.maketrans({
+        'á': 'a', 'â': 'a', 'ã': 'a',
+        'é': 'e', 'ê': 'e',
+        'í': 'i',
+        'ó': 'o', 'ô': 'o',
+        'ú': 'u',
+        'ç': 'c'
+    }))
 
+    contem_palavra_de_regiao = any(p in texto_normalizado for p in ["atende", "entrega", "regiao", "bairro", "cidade"])
+    regiao_encontrada = next((r for r in REGIOES_ATENDIDAS if r in texto_normalizado), None)
 
-# Funções do bot (start, button, mensagem) - certifique-se que estas funções estão definidas ANTES de serem usadas nos handlers
-def start(update: Update, context):
-    user_id = update.effective_user.id
-    keyboard = [
-        [InlineKeyboardButton("📍 Onde fica?", callback_data='local')],
-        [InlineKeyboardButton("🕒 Horário", callback_data='horario')],
-        [InlineKeyboardButton("🍻 Quantos litros?", callback_data='litros')],
-        [InlineKeyboardButton("📋 Cardápio", callback_data='cardapio')]
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text(apresentacao_data.get('resposta', 'Olá! Como posso ajudar?'), reply_markup=reply_markup)
-    if redis_client:
-        redis_handler.save_last_message(redis_client, user_id, "boas-vindas")
-
-
-def button(update: Update, context):
-    query = update.callback_query
-    query.answer()
-    user_id = query.effective_user.id
-    data = query.data
-
-    if data == 'local':
-        query.edit_message_text(text="Estamos localizados na Rua das Cervejas, 123 - Centro, Cervejópolis.")
-    elif data == 'horario':
-        query.edit_message_text(text="Nosso horário de funcionamento é de Terça a Domingo, das 18h às 23h.")
-    elif data == 'litros':
-        query.edit_message_text(text="Oferecemos chopp em growlers de 1 Litro e 2 Litros. Também temos pacotes para eventos maiores!")
-    elif data == 'cardapio':
-        query.edit_message_text(text="Para ver nosso cardápio completo, acesse: [Link para o Cardápio]")
-    if redis_client:
-        redis_handler.save_last_message(redis_client, user_id, f"botão_{data}")
-
-def mensagem(update: Update, context):
-    user_id = update.effective_user.id
-    texto = update.message.text.lower().strip()
-    ultima = redis_handler.get_last_message(redis_client, user_id) if redis_client else ""
-
-    # Usando o faq_handler corretamente
-    resposta_faq = faq_handler.responder_faq(faq_data, texto) # Assumindo que faq_handler.responder_faq retorna string ou None
-
-    if resposta_faq:
-        update.message.reply_text(resposta_faq)
-        if redis_client:
-            redis_handler.save_last_message(redis_client, user_id, texto)
+    if contem_palavra_de_regiao and regiao_encontrada:
+        await update.message.reply_text(
+            f"Sim, atendemos em {regiao_encontrada.title()}! ✅\n"
+            "Pode fazer seu pedido pelo site que entregamos aí."
+        )
         return
 
-    # Resposta com Gemini
-    if model:
-        try:
-            response = model.generate_content(texto)
-            update.message.reply_text(response.text)
-            if redis_client:
-                redis_handler.save_last_message(redis_client, user_id, texto)
-            return
-        except Exception as e:
-            logger.error(f"Erro na API Gemini: {e}")
-            pass # Continue para o fallback se a API Gemini falhar ou não estiver configurada
+    scored_faqs = []
+    palavras_do_usuario = set(texto_usuario.split())
+    for item in faq_data:
+        intersecao = palavras_do_usuario.intersection(set(item["palavras_chave"]))
+        score = len(intersecao)
+        if score > 0:
+            scored_faqs.append({"faq": item, "score": score})
 
-    # Fallback com sugestões via botão (se não houver resposta FAQ ou Gemini)
-    keyboard = [
-        [InlineKeyboardButton("📍 Onde fica?", callback_data='local')],
-        [InlineKeyboardButton("🕒 Horário", callback_data='horario')],
-        [InlineKeyboardButton("🍻 Quantos litros?", callback_data='litros')]
-    ]
-    if 'cardapio' not in texto and 'menu' not in texto:
-        keyboard.append([InlineKeyboardButton("📋 Cardápio", callback_data='cardapio')])
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text(
-        f"🤔 Não entendi bem '{texto}'. Talvez você queira saber:",
-        reply_markup=reply_markup
-    )
-    if redis_client:
-        redis_handler.save_last_message(redis_client, user_id, texto)
+    scored_faqs.sort(key=lambda x: x["score"], reverse=True)
 
-# Adicione os handlers ao dispatcher
-dispatcher.add_handler(CommandHandler("start", start))
-dispatcher.add_handler(CallbackQueryHandler(button))
-dispatcher.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, mensagem)) # <--- CORRIGIDO AQUI TAMBÉM
+    if not scored_faqs:
+        await update.message.reply_text(
+            "Desculpe, não entendi. 🤔\n"
+            "Você pode perguntar sobre horário, formas de pagamento, ou se atendemos em uma região específica."
+        )
+        return
 
+    max_score = scored_faqs[0]["score"]
+    top_matched_faqs = [s["faq"] for s in scored_faqs if s["score"] == max_score]
 
-# O endpoint para o webhook do Telegram
-@app.route(f"/{TOKEN}", methods=["POST"])
-def webhook():
-    if request.method == "POST":
-        update = Update.de_json(request.get_json(force=True), updater.bot)
-        dispatcher.process_update(update)
-        return "ok"
-    return abort(400) # Método não permitido
-
-
-# Função para setar o webhook (chamada uma única vez, preferencialmente fora do deploy)
-# ou pode ser chamada no final do main.py se quiser que seja setada a cada deploy
-# MAS GERALMENTE É MELHOR SETAR MANULMENTE OU VIA UM SCRIPT SEPARADO
-def set_webhook():
-    if TOKEN and WEBHOOK_URL:
-        webhook_url_with_token = f"{WEBHOOK_URL}/{TOKEN}"
-        updater.bot.set_webhook(url=webhook_url_with_token)
-        logger.info(f"Webhook configurado para: {webhook_url_with_token}")
+    if len(top_matched_faqs) == 1:
+        await update.message.reply_text(top_matched_faqs[0]["resposta"])
     else:
-        logger.warning("TOKEN ou WEBHOOK_URL não configurados. Não foi possível setar o webhook.")
+        keyboard = [[InlineKeyboardButton(f["pergunta"], callback_data=f"faq_id_{f['id']}")] for f in top_matched_faqs]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.message.reply_text(
+            "Encontrei algumas informações que podem ser úteis. Qual delas você procura?",
+            reply_markup=reply_markup
+        )
 
+async def button_callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    query = update.callback_query
+    await query.answer()
+    callback_data = query.data
+    if callback_data.startswith("faq_id_"):
+        faq_id = int(callback_data[len("faq_id_"):])
+        faq = next((item for item in faq_data if item["id"] == faq_id), None)
+        if faq:
+            await query.message.reply_text(text=faq["resposta"])
+            await query.edit_message_reply_markup(reply_markup=None)
+        else:
+            await query.message.reply_text(text="Desculpe, não consegui encontrar a resposta para essa opção.")
 
-# Isso só será executado quando você rodar `python main.py` localmente
-# No Render, o Gunicorn executa `gunicorn main:app` e não entra neste bloco
+# --- Configuração da Aplicação e Servidor ---
+# Instância do Application (para o bot do Telegram)
+ptb = Application.builder().token(TOKEN).build()
+ptb.add_handler(CommandHandler("start", start_command))
+ptb.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), responder)) # <--- Uso correto de filters
+ptb.add_handler(CallbackQueryHandler(button_callback_handler))
+
+# Instância do Flask (para o servidor web)
+flask_app = Flask(__name__) # <--- A instância Flask é chamada 'flask_app'
+
+# Função para processar updates de forma assíncrona
+def process_update(update_data):
+    try:
+        update = Update.de_json(update_data, ptb.bot)
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(ptb.process_update(update))
+        loop.close()
+    except Exception as e:
+        print(f"Erro ao processar update: {e}")
+
+# Rotas para o webhook do Telegram
+@flask_app.route(f"/api/telegram/webhook", methods=["POST"])
+def telegram_webhook():
+    try:
+        data = request.get_json(force=True)
+        if data:
+            process_update(data)
+        return Response(status=HTTPStatus.OK)
+    except Exception as e:
+        print(f"Erro no webhook: {e}")
+        return Response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
+
+@flask_app.route("/webhook", methods=["POST"])
+def telegram_webhook_legacy(): # Rota de compatibilidade, caso o webhook esteja apontado para /webhook
+    try:
+        data = request.get_json(force=True)
+        if data:
+            process_update(data)
+        return Response(status=HTTPStatus.OK)
+    except Exception as e:
+        print(f"Erro no webhook: {e}")
+        return Response(status=HTTPStatus.INTERNAL_SERVER_ERROR)
+
+@flask_app.route("/health", methods=["GET"])
+def health_check():
+    return "Bot is healthy and running!", HTTPStatus.OK
+
+@flask_app.route("/webhook-info", methods=["GET"])
+def webhook_info():
+    try:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        webhook_info = loop.run_until_complete(ptb.bot.get_webhook_info())
+        loop.close()
+        return {
+            "url": webhook_info.url,
+            "has_custom_certificate": webhook_info.has_custom_certificate,
+            "pending_update_count": webhook_info.pending_update_count,
+            "max_connections": webhook_info.max_connections,
+            "ip_address": webhook_info.ip_address
+        }
+    except Exception as e:
+        return {"error": str(e)}, HTTPStatus.INTERNAL_SERVER_ERROR
+
+def set_telegram_webhook():
+    webhook_url = f"https://{os.environ.get('RENDER_EXTERNAL_HOSTNAME')}/api/telegram/webhook"
+    try:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        loop.run_until_complete(ptb.bot.set_webhook(url=webhook_url, allowed_updates=Update.ALL_TYPES))
+        loop.close()
+        print(f"Webhook configurado para: {webhook_url}")
+    except Exception as e:
+        print(f"Erro ao configurar webhook: {e}")
+
 if __name__ == "__main__":
-    logger.info("Executando localmente. Configurarei o webhook e iniciarei o servidor Flask.")
-    set_webhook() # Chame para setar o webhook quando rodar localmente
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000))) # Flask local para testar
+    set_telegram_webhook() # Setar o webhook quando rodar localmente
+    flask_app.run(host="0.0.0.0", port=PORT)
